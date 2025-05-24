@@ -12,6 +12,7 @@ export default function Login() {
     try {
       //const response = await axios.post("https://agentic-ai-matt-backend.vercel.app/api/login", { account, password });
       const response = await axios.post("http://localhost:3000/api/login", { account, password });
+      console.log(response.data);
       if (response.data.success) {
         setResult("success");
       } else {
