@@ -16,7 +16,7 @@ export default function Login() {
       } else {
         setResult("fail");
       }
-    } catch (_) {
+    } catch {
       setResult("fail");
     }
   };
