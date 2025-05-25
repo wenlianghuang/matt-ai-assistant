@@ -1,12 +1,13 @@
 'use client';
 import React, { useState } from "react";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 export default function Login() {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [result, setResult] = useState<null | "success" | "fail">(null);
-
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -23,6 +24,13 @@ export default function Login() {
     }
   };
 
+  // 新增 useEffect 來導向
+  useEffect(() => {
+    if (result === "success") {
+      // 登入成功後導向到聊天頁面
+      router.push("/chatbot");
+    }
+  }, [result, router]);
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
