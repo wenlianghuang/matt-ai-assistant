@@ -53,6 +53,12 @@ export default function Login() {
             登入
           </button>
         </form>
+        <button
+        className="bg-red-500 text-white rounded px-3 py-2 w-full max-w-xs"
+        onClick={() => window.location.href = "http://localhost:3000/api/auth/google"}
+      >
+        使用 Google 登入
+      </button>
         {result === "success" && <div className="text-green-600">success</div>}
         {result === "fail" && <div className="text-red-600">失敗</div>}
       </main>
