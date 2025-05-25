@@ -1,15 +1,22 @@
 'use client';
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ChatbotPage() {
     const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
     const [input, setInput] = useState("");
+    const router = useRouter();
 
     const handleSend = () => {
         if (input.trim() === "") return;
         setMessages([...messages, { sender: "You", text: input }]);
         setInput("");
         // 這裡可以加入機器人回覆的邏輯
+    };
+
+    const handleLogout = () => {
+        // 這裡可加上登出邏輯（如清除 token），然後導向登入頁
+        router.push("/login");
     };
 
     return (
@@ -59,6 +66,20 @@ export default function ChatbotPage() {
                     }}
                 >
                     Send
+                </button>
+                <button
+                    onClick={handleLogout}
+                    style={{
+                        marginLeft: 8,
+                        padding: "8px 16px",
+                        borderRadius: 4,
+                        border: "none",
+                        background: "#dc3545",
+                        color: "#fff",
+                        cursor: "pointer",
+                    }}
+                >
+                    Log out
                 </button>
             </div>
         </div>
